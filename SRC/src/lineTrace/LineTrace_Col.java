@@ -32,6 +32,8 @@ public class LineTrace_Col {
 		lt.resetPid();
 		lt.distLineTrace(500, inTargetVal, outTargetVal, 170f, 200f, 1f);
 		float color = lt.getRoadColor(15);
+		
+		//colorが0.1～0.4なら停止
 		while(!(color <= 0.4 && color >= 0.1)){
 			lt.distLineTrace(50, inTargetVal, outTargetVal, 170f, 200f, 1f);
 			color = lt.getRoadColor(15);
@@ -41,6 +43,7 @@ public class LineTrace_Col {
 		lt.resetPid();
 		lt.distLineTrace(1200, inTargetVal, outTargetVal, 160f, 200f, 1f);
 		color = lt.getRoadColor(15);
+		//colorが0.1なら停止
 		while(!(color <= 0.1)){
 			lt.distLineTrace(20, inTargetVal, outTargetVal, 160f, 200f, 1f);
 			color = lt.getRoadColor(15);
@@ -65,6 +68,7 @@ public class LineTrace_Col {
 		lt.distLineTrace(350, outTargetVal, inTargetVal, 200f, 200f, 0.7f);
 
 		color = lt.getRoadColor(-15);
+		//colorが0.1~0.3なら停止
 		while(!(color <= 0.3 && color >= 0.1)){
 			lt.distLineTrace(50, outTargetVal, inTargetVal, 200f, 200f, 0.7f);
 			color = lt.getRoadColor(-15);
@@ -79,6 +83,7 @@ public class LineTrace_Col {
 		float color;
 		lt.rotateDeg(330);
 		color = lt.getRoadColor(15);
+		//colorが0.4以下で回転停止
 		while(!(color <= 0.4)){
 			lt.rotateDeg(10);
 			color = lt.getRoadColor(15);
@@ -104,6 +109,7 @@ public class LineTrace_Col {
 		color = lt.getRoadColor(15);
 		Delay.msDelay(100);
 		lt.resetPid();
+		//colorが0.1~0.4で停止
 		while(!(color <= 0.4 && color >= 0.1)){
 			lt.distLineTrace(50, inTargetVal, outTargetVal, 180f,200f,0.6f);
 			//lt.resetPid();
@@ -116,6 +122,7 @@ public class LineTrace_Col {
 		lt.distStraight(50,20);
 		lt.rotateDeg(170);
 		color = lt.getRoadColor(15);
+		//colorが0.4以下で回転停止
 		while(!(color <= 0.4)){
 			lt.rotateDeg(10);
 			color = lt.getRoadColor(15);
