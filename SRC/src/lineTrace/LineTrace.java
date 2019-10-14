@@ -25,7 +25,8 @@ public class LineTrace {
 	public LineTrace(){
 		resetPid();
 	}
-	/*搬送路に沿って一定距離ライントレースする
+	/**
+	  搬送路に沿って一定距離ライントレースする
 	  targetDis:走行距離
 	  borderLeft:左タイヤの目標値
 	  borderRight:右タイヤの目標値
