@@ -78,15 +78,18 @@ public class LineTrace_Deli {
 	 */
 	public void RelayToCollision(){
 		float color;
+		//180度回転
 		lt.rotateDeg(-350);
 		color = lt.getRoadColor(-rotateDeg);
 		while(!(color <= 0.4)){
 			lt.rotateDeg(-10);
 			color = lt.getRoadColor(-rotateDeg);
 		}
+		
 		lt.resetPid();
 		lt.distLineTrace(490,outTargetVal,inTargetVal,230f, 200f, 0.9f);
 		color = lt.getRoadColor(rotateDeg);
+		//黒or灰色の線を検出するまでループ
 		while(!(color <= 0.3)){
 			lt.distLineTrace(10,outTargetVal,inTargetVal,100f, 150f, 0.7f);
 			color = lt.getRoadColor(rotateDeg);
@@ -94,6 +97,7 @@ public class LineTrace_Deli {
 		lt.distStraight(100, 40);
 		lt.rotateDeg(170);
 		color = lt.getRoadColor(rotateDeg);
+		//白を検出するまでループ
 		while(!(color >= 0.5)){
 			lt.rotateDeg(10);
 			color = lt.getRoadColor(rotateDeg);
@@ -101,6 +105,7 @@ public class LineTrace_Deli {
 		lt.resetPid();
 		lt.distLineTrace(200, outTargetVal,inTargetVal,190f,150f,1.1f);
 		color = lt.getRoadColor(-rotateDeg);
+		//灰色の線を検出するまでループ
 		while(!(color <= 0.4 && color >= 0.1)){
 			lt.distLineTrace(20,outTargetVal,inTargetVal,150f,150f,0.9f);
 			color = lt.getRoadColor(-rotateDeg);
