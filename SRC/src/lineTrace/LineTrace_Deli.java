@@ -81,6 +81,7 @@ public class LineTrace_Deli {
 		//180度回転
 		lt.rotateDeg(-350);
 		color = lt.getRoadColor(-rotateDeg);
+		//黒or灰色の線を検出するまでループ
 		while(!(color <= 0.4)){
 			lt.rotateDeg(-10);
 			color = lt.getRoadColor(-rotateDeg);
