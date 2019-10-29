@@ -35,15 +35,21 @@ public class LineTrace {
 	  Kd:d制御の定数
 	*/
 	public void distLineTrace(double targetDis,float borderLeft,float borderRight,float Kp,float Ki,float Kd){
+		// 初期値の設定
 		double moveDis = 0;
 		double motorPos = 0;
 		EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(MotorPort.A); //左タイヤ
 		EV3LargeRegulatedMotor rightMotor = new EV3LargeRegulatedMotor(MotorPort.D); //右タイヤ
+		// 目標距離移動するまでループ
 		while(moveDis < targetDis){
+			// モータの位置を取得
 			motorPos = leftMotor.getPosition();
+			// センサ値を取得する
 			light.fetchSample(cSample, 0);
+			// PID制御によって左右のモータの速度を決定する
 			leftMotor.setSpeed((int)pid.pid_sample(cSample[0],borderLeft,Kp,Ki,Kd));
 			rightMotor.setSpeed((int)pid.pid_sample(cSample[0],borderRight,Kp,Ki,Kd));
+			// モータを動かす
 			if(borderLeft > borderRight){
 				leftMotor.forward();
 				rightMotor.forward();
@@ -51,9 +57,10 @@ public class LineTrace {
 				rightMotor.forward();
 				leftMotor.forward();
 			}
+			// 移動した距離を計算する
 			moveDis += calcDis(leftMotor.getPosition() - motorPos);
 		}
-		//this.stopMotor();
+		// モータを停止する
 		this.stopMotor(leftMotor,rightMotor);
 		Delay.msDelay(1000);
 		leftMotor.close();
